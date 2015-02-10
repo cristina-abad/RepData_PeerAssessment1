@@ -1,3 +1,19 @@
+<!-- 
+repdata-011 Coursera course
+Peer Assessment 1
+
+Source data
+https://d396qusza40orc.cloudfront.net/repdata%2Fdata%2Factivity.zip
+
+Note: This script assumes you have downloaded the file and extracted it in the current directory
+If you haven't, the script can do it for you. You can do it from an R session with the following command:
+
+download.file("https://d396qusza40orc.cloudfront.net/repdata%2Fdata%2Factivity.zip", destfile = "activity.zip")
+
+However, this shouldn't be necessary as the dataset comes with the repository.
+
+--> 
+
 ---
 title: "Reproducible Research: Peer Assessment 1"
 output: 
@@ -7,19 +23,69 @@ output:
 
 
 ## Loading and preprocessing the data
+We unzip and load the dataset, and convert the dates to an appropriate format:
+```{r echo=TRUE}
+unzip("activity.zip")
+data <- read.csv("activity.csv")
+data$date <- as.Date(data$date, "%Y-%m-%d")
+```
 
+Here is what the dataset looks like after loading and pre-processing:
+```{r echo=TRUE}
+str(data)
+```
 
 
 ## What is mean total number of steps taken per day?
+For this part of the assignment, we ignore the missing values in the dataset.
+```{r echo=TRUE}
+withoutNAs <- data[!is.na(data$steps), ]
+```
 
+First, we calculate the total number of steps taken per day:
+```{r echo=TRUE}
+steps <- aggregate(withoutNAs$steps, list(withoutNAs$date), sum)
+```
+
+Second, we make a histogram of the total number of steps taken each day. NOTE: This is not a boxplot, but a histogram, as clearly indicated in the project assignment. For example, the following histogram tells us that the subject took between 9000 and 11000 steps on 16 of the days of the dataset.
+```{r fig.width=15, echo=TRUE, tidy=FALSE}
+hist(steps$x, breaks=10, main="Histogram of the total number of steps\ntaken each day", xlab="Steps", ylab="Probability density")
+hist(steps$x, breaks=10, main="Histogram of the total number of steps\ntaken each day", xlab="Steps", ylab="Probability density", plot = FALSE)
+```
+  
+
+Finally, we calculate and report the mean and median of the total number of steps taken per day. Note that the reported median is consistent with the data shown in the histogram.
+```{r echo=TRUE}
+mean(steps$x)
+median(steps$x)
+```
 
 
 ## What is the average daily activity pattern?
+First, we make a time series plot of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all days (y-axis)
+
+```{r echo=TRUE}
+activity <- aggregate(steps ~ interval, data = withoutNAs, mean)
+plot(steps ~ interval, data = activity, type = "l")
+```
+
+Which 5-minute interval, on average across all the days in the dataset, contains the maximum number of steps?
+```{r echo=TRUE}
+activity[which(activity$steps == max(activity$steps)), ]
+```
+On average, interval #835 has the maximum number of steps (206.17).
 
 
+## Inputing missing values
+Note that there are a number of days/intervals where there are missing values (coded as NA). The presence of missing days may introduce bias into some calculations or summaries of the data.
 
-## Imputing missing values
+1. Calculate and report the total number of missing values in the dataset (i.e. the total number of rows with NAs)
 
+2. Devise a strategy for filling in all of the missing values in the dataset. The strategy does not need to be sophisticated. For example, you could use the mean/median for that day, or the mean for that 5-minute interval, etc.
+
+3. Create a new dataset that is equal to the original dataset but with the missing data filled in.
+
+4. Make a histogram of the total number of steps taken each day and Calculate and report the mean and median total number of steps taken per day. Do these values differ from the estimates from the first part of the assignment? What is the impact of imputing missing data on the estimates of the total daily number of steps?
 
 
 ## Are there differences in activity patterns between weekdays and weekends?
