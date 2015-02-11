@@ -1,26 +1,9 @@
-<!-- 
-repdata-011 Coursera course
-Peer Assessment 1
-
-Source data
-https://d396qusza40orc.cloudfront.net/repdata%2Fdata%2Factivity.zip
-
-Note: This script assumes you have downloaded the file and extracted it in the current directory
-If you haven't, the script can do it for you. You can do it from an R session with the following command:
-
-download.file("https://d396qusza40orc.cloudfront.net/repdata%2Fdata%2Factivity.zip", destfile = "activity.zip")
-
-However, this shouldn't be necessary as the dataset comes with the repository.
-
---> 
-
 ---
 title: "Reproducible Research: Peer Assessment 1"
 output: 
   html_document:
     keep_md: true
 ---
-
 
 ## Loading and preprocessing the data
 We unzip and load the dataset, and convert the dates to an appropriate format:
