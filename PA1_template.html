@@ -307,9 +307,9 @@ plot(steps ~ interval, data = activity, type = &quot;l&quot;)
 
 <p>Note that there are a number of days/intervals where there are missing values (coded as NA). The presence of missing days may introduce bias into some calculations or summaries of the data.</p>
 
-<ol>
+<ul>
 <li>Calculate and report the total number of missing values in the dataset (i.e. the total number of rows with NAs)</li>
-</ol>
+</ul>
 
 <pre><code class="r">sum(is.na(data$steps))
 </code></pre>
@@ -319,15 +319,15 @@ plot(steps ~ interval, data = activity, type = &quot;l&quot;)
 
 <p>A total of 2304 rows are missing.</p>
 
-<ol>
+<ul>
 <li>Devise a strategy for filling in all of the missing values in the dataset. The strategy does not need to be sophisticated. For example, you could use the mean/median for that day, or the mean for that 5-minute interval, etc.</li>
-</ol>
+</ul>
 
 <p>ANSWER: The mean for that 5-minute interval is a better proxy than the daily mean (a mean that considers the interval and the type of day of the week would be even better). We use this approach next. Note that we do not calculate the mean for each interval as this was already calculated earlier.</p>
 
-<ol>
+<ul>
 <li>Create a new dataset that is equal to the original dataset but with the missing data filled in.</li>
-</ol>
+</ul>
 
 <pre><code class="r">newData &lt;- data
 for(i in 1:nrow(newData)){
@@ -336,9 +336,9 @@ for(i in 1:nrow(newData)){
 }
 </code></pre>
 
-<ol>
+<ul>
 <li>Make a histogram of the total number of steps taken each day and Calculate and report the mean and median total number of steps taken per day. Do these values differ from the estimates from the first part of the assignment? What is the impact of imputing missing data on the estimates of the total daily number of steps?</li>
-</ol>
+</ul>
 
 <pre><code class="r">steps &lt;- aggregate(steps ~ date, data = newData, sum)
 hist(steps$steps, breaks=10, main=&quot;Histogram of the total number of steps\ntaken each day&quot;, xlab=&quot;Steps&quot;)
@@ -364,16 +364,16 @@ hist(steps$steps, breaks=10, main=&quot;Histogram of the total number of steps\n
 
 <p>For this part the weekdays() function may be of some help here. Use the dataset with the filled-in missing values for this part.</p>
 
-<ol>
+<ul>
 <li>Create a new factor variable in the dataset with two levels – “weekday” and “weekend” indicating whether a given date is a weekday or weekend day.</li>
-</ol>
+</ul>
 
 <pre><code class="r">newData$typeOfDay &lt;- as.factor(ifelse(as.POSIXlt((newData$date))$wday == 0 | as.POSIXlt((newData$date))$wday == 6, &quot;weekend&quot;, &quot;weekday&quot;))
 </code></pre>
 
-<ol>
+<ul>
 <li>Make a panel plot containing a time series plot (i.e. type = &ldquo;l&rdquo;) of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all weekday days or weekend days (y-axis). See the README file in the GitHub repository to see an example of what this plot should look like using simulated data.</li>
-</ol>
+</ul>
 
 <pre><code class="r">library(lattice)
 steps &lt;- aggregate(steps~interval+typeOfDay, newData, mean)
