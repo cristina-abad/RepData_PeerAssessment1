@@ -120,7 +120,7 @@ activity[which(activity$steps == max(activity$steps)), ]
 ##     interval    steps
 ## 104      835 206.1698
 ```
-On average, interval #```{r}activity[which(activity$steps == max(activity$steps)), ]$interval``` has the maximum number of steps (```{r}activity[which(activity$steps == max(activity$steps)), ]$steps```).
+On average, interval #835 has the maximum number of steps (206.1698113).
 
 
 ## Inputing missing values
@@ -136,7 +136,7 @@ sum(is.na(data$steps))
 ## [1] 2304
 ```
 
-A total of ```{r}sum(is.na(data$steps))``` rows are missing.
+A total of 2304 rows are missing.
 
 2. Devise a strategy for filling in all of the missing values in the dataset. The strategy does not need to be sophisticated. For example, you could use the mean/median for that day, or the mean for that 5-minute interval, etc.
 
@@ -178,7 +178,7 @@ median(steps$steps)
 ## [1] 10766.19
 ```
 
-The histogram looks different than the one from our earlier analysis; however, the mean (```{r}mean(steps$steps)``` steps) and median (```{r}median(steps$steps)``` steps) are (almost) the same as the ones from the first part of the assignment.
+The histogram looks different than the one from our earlier analysis; however, the mean (1.0766189 &times; 10<sup>4</sup> steps) and median (1.0766189 &times; 10<sup>4</sup> steps) are (almost) the same as the ones from the first part of the assignment.
 
 ## Are there differences in activity patterns between weekdays and weekends?
 For this part the weekdays() function may be of some help here. Use the dataset with the filled-in missing values for this part.

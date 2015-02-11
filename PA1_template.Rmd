@@ -56,7 +56,7 @@ Which 5-minute interval, on average across all the days in the dataset, contains
 ```{r echo=TRUE}
 activity[which(activity$steps == max(activity$steps)), ]
 ```
-On average, interval #```{r}activity[which(activity$steps == max(activity$steps)), ]$interval``` has the maximum number of steps (```{r}activity[which(activity$steps == max(activity$steps)), ]$steps```).
+On average, interval #`r activity[which(activity$steps == max(activity$steps)), ]$interval` has the maximum number of steps (`r activity[which(activity$steps == max(activity$steps)), ]$steps`).
 
 
 ## Inputing missing values
@@ -67,7 +67,7 @@ Note that there are a number of days/intervals where there are missing values (c
 sum(is.na(data$steps))
 ```
 
-A total of ```{r}sum(is.na(data$steps))``` rows are missing.
+A total of `r sum(is.na(data$steps))` rows are missing.
 
 2. Devise a strategy for filling in all of the missing values in the dataset. The strategy does not need to be sophisticated. For example, you could use the mean/median for that day, or the mean for that 5-minute interval, etc.
 
@@ -92,7 +92,7 @@ median(steps$steps)
 
 ```
 
-The histogram looks different than the one from our earlier analysis; however, the mean (```{r}mean(steps$steps)``` steps) and median (```{r}median(steps$steps)``` steps) are (almost) the same as the ones from the first part of the assignment.
+The histogram looks different than the one from our earlier analysis; however, the mean (`r mean(steps$steps)` steps) and median (`r median(steps$steps)` steps) are (almost) the same as the ones from the first part of the assignment.
 
 ## Are there differences in activity patterns between weekdays and weekends?
 For this part the weekdays() function may be of some help here. Use the dataset with the filled-in missing values for this part.

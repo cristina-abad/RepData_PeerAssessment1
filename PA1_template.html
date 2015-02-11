@@ -301,7 +301,7 @@ plot(steps ~ interval, data = activity, type = &quot;l&quot;)
 ## 104      835 206.1698
 </code></pre>
 
-<p>On average, interval #<code>{r}activity[which(activity$steps == max(activity$steps)), ]$interval</code> has the maximum number of steps (<code>{r}activity[which(activity$steps == max(activity$steps)), ]$steps</code>).</p>
+<p>On average, interval #835 has the maximum number of steps (206.1698113).</p>
 
 <h2>Inputing missing values</h2>
 
@@ -317,7 +317,7 @@ plot(steps ~ interval, data = activity, type = &quot;l&quot;)
 <pre><code>## [1] 2304
 </code></pre>
 
-<p>A total of <code>{r}sum(is.na(data$steps))</code> rows are missing.</p>
+<p>A total of 2304 rows are missing.</p>
 
 <ol>
 <li>Devise a strategy for filling in all of the missing values in the dataset. The strategy does not need to be sophisticated. For example, you could use the mean/median for that day, or the mean for that 5-minute interval, etc.</li>
@@ -358,7 +358,7 @@ hist(steps$steps, breaks=10, main=&quot;Histogram of the total number of steps\n
 <pre><code>## [1] 10766.19
 </code></pre>
 
-<p>The histogram looks different than the one from our earlier analysis; however, the mean (<code>{r}mean(steps$steps)</code> steps) and median (<code>{r}median(steps$steps)</code> steps) are (almost) the same as the ones from the first part of the assignment.</p>
+<p>The histogram looks different than the one from our earlier analysis; however, the mean (1.0766189 &times; 10<sup>4</sup> steps) and median (1.0766189 &times; 10<sup>4</sup> steps) are (almost) the same as the ones from the first part of the assignment.</p>
 
 <h2>Are there differences in activity patterns between weekdays and weekends?</h2>
 
